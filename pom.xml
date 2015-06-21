@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ca.andric.oicr</groupId>
   <artifactId>powerSetDemo</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.5.0-SNAPSHOT</version>
   <name>Power Set Assignment</name>
   <description>Assignment for OICR</description>
   <dependencies>
@@ -13,4 +13,24 @@
 	  <scope>test</scope>
 	</dependency>
   </dependencies>
+  <build>
+  
+  <plugins>
+  
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>powerSetDemo.PowerSetGenerator</mainClass>
+            </manifest>
+         </archive>
+       </configuration>
+    </plugin>
+  
+ 
+  </plugins>
+</build>
 </project>
