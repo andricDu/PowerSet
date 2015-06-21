@@ -6,6 +6,7 @@ package powerSetDemo;
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * @author Dusan
@@ -20,17 +21,20 @@ public class PowerSetGenerator {
 		
 		if (args.length != 3) { //check argument length
 			System.out.println("Incorrect Number of Arguments");
-			System.out.println("Arg0: Mode (s=serialized, t=text)");
+			System.out.println("Arg0: Mode (ser=serialized, csv=csv text file, nl=newline textfile)");
 			System.out.println("Arg1: Input file");
 			System.out.println("Arg2: Output file");
 			
 		} else { //if 3 arguments, we are good
 			try {
 				
-				if (args[0].equalsIgnoreCase("t")) {
-					//text mode
+				if (args[0].equalsIgnoreCase("csv")) {
+					//csv mode
 					textFileHelper(args[1],args[2]);
-				} else if (args[0].equalsIgnoreCase("s")) {
+				} else if (args[0].equalsIgnoreCase("nl")) {
+					//newline mode
+					newlineHelper(args[1],args[2]);
+				} else if (args[0].equalsIgnoreCase("ser")) {
 					//serialized mode
 					serializedHelper(args[1],args[2]);
 				} else {
@@ -100,6 +104,38 @@ public class PowerSetGenerator {
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(powerSet);
 		oos.close();
+	}
+	
+	/**
+	 * Generates power set from a text file where each element of the set is
+	 * on its own line.
+	 * @param inputFile Filepath to input file
+	 * @param outputFile Filepath to output file
+	 * @throws IOException
+	 */
+	private static void newlineHelper(String inputFile, String outputFile) throws IOException {
+		PoweredHashSet<String> set = new PoweredHashSet<String>();
+		StringBuilder outputString = new StringBuilder(); //builder because needed in a loop
+		
+		//each line in the file is an element of a set
+		try(Stream<String> lines = Files.lines(Paths.get(inputFile))){
+			  lines.forEach(set::add);
+		}
+		
+		//get the Power Set
+		PoweredHashSet<PoweredHashSet<String>> powerSet = set.getPowerSet();
+		
+		//generate the new output string
+		for (PoweredHashSet<String> subset: powerSet) {
+			//
+			outputString.append(subset.toString()+'\n');
+		}
+		//delete the last newline as it will add an extra element of empty
+		outputString.deleteCharAt(outputString.length()-1);
+		
+		//out the data goes to the output file
+		Files.write(Paths.get(outputFile), outputString.toString().getBytes());
+		
 	}
 
 }
