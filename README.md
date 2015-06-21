@@ -21,7 +21,9 @@ Provided three different input formats for the files as the specification was op
 
 Chose to implement an iterative solution rather than recursive solution. This is due to the fact that the complexity is O(2^n) and as such, a stack overflow from a recursive solution is a real possibility. 
 
-Extended HashSet class as it provides a general solution that can provide the ability of reading and writing serialized sets to and from file without the need to limit the typing of said sets. Extending an ArrayList would have also worked, but Sets enforce element uniqueness which is handy. 
+Extended HashSet class as it provides a general solution that can provide the ability of reading and writing serialized sets to and from file without the need to limit the typing of said sets. Did not extend TreeSet as ordering was not specified as a requirement and HashSets provide constant time operations. 
+
+Extending an ArrayList would have also worked for a solution, but Sets enforce element uniqueness which is handy. 
 
 Tried to show some of the newer Java features. Examples include try-with-resource and Streams.
 
