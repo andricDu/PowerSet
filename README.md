@@ -3,8 +3,6 @@ An implementation of computing the power set of a given set.
 
 This program provides an extended version of a HashSet called PoweredHashSet. It contains the method getPowerSet which computes the power set of its elements, and returns the power set as another PoweredHashSet.
 
-Went with this implementation as it provides a general solution that can provide the ability of reading and writing serialized sets to and from file without the need to limit the typing of said sets. 
-
 This program can take following type of files:
 
 * ser files. Serialized java objects. In this case, HashSets.
@@ -17,6 +15,15 @@ csv ouput files if used as input will not have the intended effect as the progra
 
 ## Given Parameters
 Create a maven java project on github that is Junit tested.  The system should accept a set from a file and calculate its power set. Output should be written to a file
+
+## Design Considerations
+Provided three different input formats for the files as the specification was open ended in the description of the files. 
+
+Chose to implement an iterative solution rather than recursive solution. This is due to the fact that the complexity is O(2^n) and as such, a stack overflow from a recursive solution is a real possibility. 
+
+Extended HashSet class as it provides a general solution that can provide the ability of reading and writing serialized sets to and from file without the need to limit the typing of said sets. Extending a list would have also worked, but Sets enforce element uniqueness which is handy. 
+
+Tried to show some of the newer Java features. Examples include try-with-resource and Streams.
 
 ## Developed With
 
