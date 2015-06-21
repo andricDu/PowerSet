@@ -6,6 +6,7 @@ package powerSetDemo;
 import java.io.*;
 import java.nio.file.*;
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * @author Dusan
@@ -17,25 +18,19 @@ public class PowerSetGenerator {
 	 * @param args Program Arguments, consisting of input file path, and output file path.
 	 */
 	public static void main(String[] args) {
-		if (args.length != 2) {
+		
+		if (args.length != 2) { //check argument length
 			System.out.println("Incorrect Number of Arguments");
 			System.out.println("Arg0: Input file");
 			System.out.println("Arg1: Output file");
 			
-		} else {
+		} else { //if 2 args, we are good
 			try {
+				//get content from first file
 				String content = new String(Files.readAllBytes(Paths.get(args[0])));
-				System.out.println(content);
 				
-				File file = new File(args[1]);
-				FileOutputStream fop = new FileOutputStream(file);
-				if (!file.exists()) {
-					file.createNewFile();
-				}
-				
-				fop.write(getPowerSetFromString(content).toString().getBytes());
-				fop.flush();
-				fop.close();
+				//write power set to second file
+				Files.write(Paths.get(args[1]), getPowerSetFromString(content).toString().getBytes());
 				
 			} catch (Exception e) {
 				System.err.println(e.getMessage());
