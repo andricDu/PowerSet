@@ -3,6 +3,8 @@ An implementation of computing the power set of a given set.
 
 This program provides an extended version of a HashSet called PoweredHashSet. It contains the method getPowerSet which computes the power set of its elements, and returns the power set as another PoweredHashSet.
 
+Went with this implementation as it provides a general solution that can provide the ability of reading and writing serialized sets to and from file without the need to limit the typing of said sets. 
+
 This program can take following type of files:
 
 * ser files. Serialized java objects. In this case, HashSets.
