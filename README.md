@@ -36,14 +36,14 @@ Tried to show some of the newer Java features. Examples include try-with-resourc
 
 * JUnit 4.12
 
-##Building
+## Building
 Program is built with maven.
 
 ```
 mvn clean package
 ```
 
-##Running
+## Running
 You can run this program from within eclipse or command line.
 
 ```
@@ -54,9 +54,9 @@ Arg1: Input file
 Arg2: Output file
 ```
 
-##Samples
+## Samples
 Sample input and output files are provided in the samples directory.
 
-##Algorithm Scribbles
+## Algorithm Scribbles
 
 https://github.com/andricDu/PowerSet/blob/master/powersetnotes.pdf
